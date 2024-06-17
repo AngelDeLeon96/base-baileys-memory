@@ -1,0 +1,104 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '50766962147@s.whatsapp.net',
+    fromMe: false,
+    id: '7A58C832AE667DF8C9DC1B47F82F7005',
+    participant: undefined
+  },
+  messageTimestamp: 1718639566,
+  pushName: 'Angel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Prueba',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Prueba',
+  from: '50766962147'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50766962147@s.whatsapp.net',
+    fromMe: false,
+    id: '32F5753712ABC01AB0795F351702A2F2',
+    participant: undefined
+  },
+  messageTimestamp: 1718639731,
+  pushName: 'Angel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hola',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hola',
+  from: '50766962147'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_2a7619d2-a473-4bb3-9081-677cda44c5d5',
+  keyword: 'key_f3c1b0c6-ccfd-4dee-88f0-187a111729a8',
+  answer: '🙌 Hola bienvenido a este *Chatbot*',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '969d9d7855f146f755684bfe68194a21'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f44ef3ad-f38f-405b-afb2-9d58ef081103',
+  keyword: 'ans_2a7619d2-a473-4bb3-9081-677cda44c5d5',
+  answer: 'te comparto los siguientes links de interes sobre el proyecto\n' +
+    '👉 *doc* para ver la documentación\n' +
+    '👉 *gracias*  para ver la lista de videos\n' +
+    '👉 *discord* unirte al discord',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object]
+    ],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '72808fc4242ed97d99b5f8ea8559cdcf'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '50766962147@s.whatsapp.net',
+    fromMe: false,
+    id: '13BDE5ECD069546CBF7FBE1B57011BFF',
+    participant: undefined
+  },
+  messageTimestamp: 1718648309,
+  pushName: 'Angel',
+  broadcast: false,
+  message: Message {
+    conversation: 'Hi',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Hi',
+  from: '50766962147'
+}
