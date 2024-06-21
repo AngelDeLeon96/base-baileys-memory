@@ -5,8 +5,17 @@ const router = express.Router()
 
 
 const chatWoodHook = async (req, res) => {
+    const providerWS = req.providerWS;
+    //console.log(providerWS)
     const body = req.body
-    console.log(body)
+    const phone = body?.conversation?.meta?.sender?.phone_number.replace("+", "")
+    if (body?.private) {
+        res.send(null)
+        return
+    }
+    console.log('body', phone, body.content)
+    await providerWS.sendMessage(`${phone}`, body.content, {})
+
     res.send(body)
 
 };

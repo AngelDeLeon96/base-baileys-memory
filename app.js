@@ -3,30 +3,20 @@ const QRPortalWeb = require('@bot-whatsapp/portal')
 const BaileysProvider = require('@bot-whatsapp/provider/baileys')
 const MockAdapter = require('@bot-whatsapp/database/mock')
 const ServerHttp = require('./http')
+const { sendMessageChatwood } = require('./services/chatwood')
 
-const flowSecundario = addKeyword(['2', 'siguiente']).addAnswer(['📄 Aquí tenemos el flujo secundario'])
+const flowSecundario = addKeyword(['salir', 'Salir']).addAnswer(['Gracias por contribuir a la mejora de nuestro país.'])
 
-const flowDocs = addKeyword(['doc', 'documentacion', 'documentación']).addAnswer(
-    [
-        '📄 Aquí encontras las documentación recuerda que puedes mejorarla',
-        'https://bot-whatsapp.netlify.app/',
-        '\n*2* Para siguiente paso.',
-    ],
-    null,
-    null,
-    [flowSecundario]
-)
+const flowDocs = addKeyword(['1', 'denuncia'])
+    .addAnswer(
+        [
+            '📄 Asunto',
+        ],
+        null,
+        null,
+        [flowSecundario], { capture: true }
+    )
 
-const flowTuto = addKeyword(['tutorial', 'tuto']).addAnswer(
-    [
-        '🙌 Aquí encontras un ejemplo rapido',
-        'https://bot-whatsapp.netlify.app/docs/example/',
-        '\n*2* Para siguiente paso.',
-    ],
-    null,
-    null,
-    [flowSecundario]
-)
 
 const flowGracias = addKeyword(['gracias', 'grac']).addAnswer(
     [
@@ -41,29 +31,26 @@ const flowGracias = addKeyword(['gracias', 'grac']).addAnswer(
     [flowSecundario]
 )
 
-const flowDiscord = addKeyword(['discord']).addAnswer(
-    ['🤪 Únete al discord', 'https://link.codigoencasa.com/DISCORD', '\n*2* Para siguiente paso.'],
-    null,
-    null,
-    [flowSecundario]
-)
-
+/*
 const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
-    .addAnswer('🙌 Hola bienvenido a este *Chatbot*')
-    .addAnswer(
-        [
-            'te comparto los siguientes links de interes sobre el proyecto',
-            '👉 *doc* para ver la documentación',
-            '👉 *gracias*  para ver la lista de videos',
-            '👉 *discord* unirte al discord',
-        ],
-        null,
-        null,
-        [flowDocs, flowGracias, flowTuto, flowDiscord]
-    )
-
+    .addAction(async (ctx, { flowDynamic }) => {
+        MESSAGE = "🍀Bienvenido al Chat de la Fiscalia General Electoral.";
+        console.log(MESSAGE);
+        await sendMessageChatwood(MESSAGE, 'incoming');
+        await flowDynamic(MESSAGE);
+    }, [flowDocs])
+*/
+const flowPrincipal = addKeyword(['hola'])
+    .addAction(async (_, { flowDynamic }) => {
+        return await flowDynamic('Buenas! ¿Cual es tu nombre?')
+    })
+    .addAction({ capture: true }, async (ctx, { flowDynamic, state }) => {
+        await state.update({ name: ctx.body })
+        return await flowDynamic(`Gracias por tu nombre!: ${ctx.body}`)
+    })
+    .addAnswer('Chao!')
 const main = async () => {
-    const server = new ServerHttp()
+
     const adapterDB = new MockAdapter()
     const adapterFlow = createFlow([flowPrincipal])
     const adapterProvider = createProvider(BaileysProvider)
@@ -74,6 +61,8 @@ const main = async () => {
         database: adapterDB,
     })
     QRPortalWeb();
+
+    const server = new ServerHttp(adapterProvider)
     server.start();
 }
 

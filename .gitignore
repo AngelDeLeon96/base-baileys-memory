@@ -41,3 +41,6 @@ bot_sessions/session-50764681728.0.json
 bot_sessions/session-50766962147.0.json
 bot_sessions/session-50766962147.61.json
 package-lock.json
+.DS_Store
+core.class.log
+queue.class.log
